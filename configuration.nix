@@ -71,6 +71,17 @@
     wget vim gnome3.adwaita-icon-theme git memtest86-efi
   ];
 
+  nixpkgs.overlays = let
+pureUseZenOptimizations = stdenv: stdenv //
+    { mkDerivation = args: stdenv.mkDerivation (args // {
+        NIX_CFLAGS_COMPILE = toString (args.NIX_CFLAGS_COMPILE or "") + " -march=znver1";
+
+        preferLocalBuild = true;
+        allowSubstitutes = false;
+      });
+    };
+in [(self: super: { stdenv = pureUseZenOptimizations super.stdenv; })];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
