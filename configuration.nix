@@ -13,6 +13,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.memtest86.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -62,10 +63,12 @@
   # Set your time zone.
   time.timeZone = "America/New_York";
 
+  nixpkgs.config.allowUnfree = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget vim gnome3.adwaita-icon-theme
+    wget vim gnome3.adwaita-icon-theme git memtest86-efi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
