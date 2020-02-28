@@ -14,8 +14,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/7b5cca4d-f7db-4669-8e95-9a48fdf00848";
-      fsType = "ext4";
+    { device = "rzp/root";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home" =
+    { device = "rzp/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "rzp/nix";
+      fsType = "zfs";
     };
 
   fileSystems."/boot" =
