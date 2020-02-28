@@ -3,11 +3,11 @@
 {
   home.packages = [
     pkgs.htop
-    #pkgs.discord
+    pkgs.discord
     pkgs.dmidecode
     pkgs.ffmpeg
     pkgs.multimc
-    #pkgs.steam-run
+    pkgs.steam-run
     pkgs.virt-manager
     pkgs.vlc
     pkgs.wireshark-qt
@@ -24,5 +24,7 @@
   programs.home-manager = {
     enable = true;
   };
+
+  nixpkgs.config.allowUnfree = true;
 }
 
